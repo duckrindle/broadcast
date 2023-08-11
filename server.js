@@ -1,7 +1,7 @@
 const HOST = 'localhost';
 const PORT = 41234;
 
-import dgram from 'node:dgram';
+const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
 
 server.on('listening', function() {
@@ -10,7 +10,7 @@ server.on('listening', function() {
 });
 
 server.on('message', function(message, remote) {
- console.log(remote.address + ':' + remote.port +' - ' + message);
+ console.log(message);
 });
 
 server.on('error', (err) => {
