@@ -6,13 +6,13 @@ const client = dgram.createSocket('udp4');
 
 const message = Buffer.from('Some bytes');
 
-/*client.send(message, 0, message.length, PORT, HOST, function(err, bytes) {
-    if (err) throw err;
-    console.log('UDP message sent to ' + HOST +':'+ PORT);
-    client.close();
-});*/
+setInterval(function send_a_message() {
+    //console.log('send_a_message');
 
-client.send(message, PORT, HOST, (err) => {
-    console.log('UDP message sent to ' + HOST +':'+ PORT);
-    client.close();
-});
+    client.send(message, PORT, HOST, function(err, bytes) {
+        if (err) throw err;
+        console.log('UDP message sent to ' + HOST +':'+ PORT);
+        //client.close();
+    });
+
+}, 1000);
